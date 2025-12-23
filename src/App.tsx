@@ -1,21 +1,20 @@
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import Home from "./app/pages/Home";
+import Dashboard from "./app/pages/Dashboard";
+import Settings from "./app/pages/Settings";
+import Layout from "./components/layout/Layout";
 
-import './App.css'
-import { Button } from './components/ui/button'
-
-function App() {
-
+export default function App() {
   return (
-    <>
-      <div className="flex min-h-screen items-center justify-center bg-gray-100">
-        <h1 className="text-3xl font-bold text-gray-800">
-          ReactLaunch 🚀
-        </h1>
-        <div className="flex min-h-screen items-center justify-center">
-          <Button>Get Started</Button>
-        </div>
-      </div>
-    </>
-  )
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="settings" element={<Settings />} />
+        </Route>
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
-
-export default App
